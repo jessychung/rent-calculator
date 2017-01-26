@@ -5,24 +5,62 @@
     <title>Rent Calculator</title>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Rubik:400,700" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./styles/main.css" >
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 </head>
 <body>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h1>Where can you live in Canada?</h1>
-        </div>
+<div class="toronto-bg"></div>
+
+<div class="row main-title">
+    <div class="col-lg-12 col-md-12" style="text-align: center">
+        <i class="fa fa-home" aria-hidden="true"></i>
+        <h1>Where can you afford to live in Canada?</h1>
     </div>
 </div>
 
+<div class="main container">
+
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12">
+            <div class="box">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="step-title">
+                            <div class="step-circle">1</div>
+                            <h2>What's your income?</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <form>
+                            <div class="form-group">
+                                <input class="form-control" type="number" name="income" id="inputIncome" placeholder="e.g. 50,000" onkeyup="getValue(value)" required/>
+                            </div>
+                            <div id="test"></div>
+                            <a href="#">Add another income</a>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="col-lg-4 col-md-4 col-sm-4">-->
+            <!--<div class="box">-->
+                <!--Placeholder-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+</div>
 
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="main.js"></script>
 </body>
 </html>
