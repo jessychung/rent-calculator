@@ -1,3 +1,6 @@
+$light: 300;
+$regular: 400;
+$medium: 500;
 $bold: 700;
 
 input::-webkit-outer-spin-button,
@@ -11,12 +14,10 @@ html, body{
   background-color: #f9f9f9;
   font-family: 'Rubik', sans-serif;
   margin: 0;
-  overflow: hidden;
-}
-
-.main {
-  padding: 30px 0;
-  margin-top: -75px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height:100%;
+  overflow-x: hidden;
 }
 
 label {
@@ -24,41 +25,99 @@ label {
 }
 
 .toronto-bg {
-  height: 300px;
-  width: 100%;
-  background-image: linear-gradient(to bottom right, rgba(58, 0, 255, 0.5), rgba(0, 151, 255, 0.5)),url("http://www.moneysense.ca/wp-content/uploads/2016/03/Toronto-Naeem-Jaffer-Getty-Images.jpg");
+  background-image: linear-gradient(to bottom right, rgba(12, 84, 217, 0.9), rgba(12, 84, 217, 0.9)),url("http://www.moneysense.ca/wp-content/uploads/2016/03/Toronto-Naeem-Jaffer-Getty-Images.jpg");
+  //background-image: linear-gradient(to bottom right, rgba(58, 0, 255, 0.7), rgba(0, 151, 255, 0.7)),url("http://www.moneysense.ca/wp-content/uploads/2016/03/Toronto-Naeem-Jaffer-Getty-Images.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  left:0;
+  top:0;
   //-webkit-filter: grayscale(100%);
   //-moz-filter: grayscale(100%);
   //-o-filter: grayscale(100%);
   //-ms-filter: grayscale(100%);
   //filter: grayscale(100%);
-}
-
-.main-title {
-  padding: 20px 0;
-  height: 300px;
-  line-height: 240px;
-  margin-top: -300px;
-  h1 {
-    display: inline-block;
-    color: #fff;
-    text-shadow: 2px 2px rgba(0, 0, 0, 0.3);
-    //&:after {
-    //  content: '';
-    //  width: auto;
-    //  height: 5px;
-    //  background-color: rgba(255, 255, 0, 0.78);
-    //  display: block;
-    //  margin-top: -9px;
-    //}
+  .main-title {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    text-align: center;
+    h1 {
+      display: inline-block;
+      color: #fff;
+      text-shadow: 2px 2px rgba(0, 0, 0, 0.2);
+      font-family: 'merriweather', sans-serif;
+      font-weight: $light;
+      font-size: 60px;
+      margin-bottom: 30px;
+      span {
+        display: inherit;
+        &:after {
+          content: '';
+          width: auto;
+          height: 6px;
+          background-color: #0181ff;
+          display: block;
+          margin-top: -3px;
+        }
+      }
+    }
+    p {
+      font-size: 15px;
+      color: #fff;
+      font-family: "rubik",sans-serif;
+      font-weight: $light;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .y-bar {
+      width: 70px;
+      height: 5px;
+      background-color: #f9ff00;
+      display: inline-block;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+    .start-btn {
+      border: 1px solid #fff;
+      background-color: transparent;
+      color: #fff;
+      font-size: 19px;
+      font-weight: 300;
+      padding: 12px 34px;
+      margin-top: 40px;
+    }
   }
 }
 
-h1 {
-  font-family: 'Rubik', serif;
+.main {
+  padding: 30px 0;
+  .step-title {
+    margin-bottom: 10px;
+    h2 {
+      display: inline-block;
+      margin-top: 0;
+      margin-bottom: 0;
+      font-size: 21px;
+      font-weight: 700;
+      font-family: 'merriweather', sans-serif;
+      padding-left: 10px;
+    }
+    .step-circle {
+      width: 35px;
+      height: 35px;
+      line-height: 32px;
+      text-align: center;
+      border: 3px solid #333;
+      border-radius: 100px;
+      font-weight: 700;
+      display: inline-block;
+    }
+  }
 }
 
 .box {
@@ -69,24 +128,5 @@ h1 {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
   h2 {
     font-size: 17px;
-  }
-  .step-title {
-    margin-bottom: 10px;
-    h2 {
-      display: inline-block;
-      margin-top: 0;
-      font-size: 18px;
-      padding-left: 10px;
-    }
-    .step-circle {
-      width: 30px;
-      height:30px;
-      line-height: 28px;
-      text-align: center;
-      border: 2px solid #333;
-      border-radius: 100px;
-      font-weight: $bold;
-      display: inline-block;
-    }
   }
 }
