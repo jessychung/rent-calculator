@@ -17,12 +17,31 @@ html, body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height:100%;
-  overflow-x: hidden;
 }
 
 label {
   font-weight: 400;
 }
+
+.top {
+  position: relative;
+  z-index: 1000;
+  background: #FFFFFF;
+  margin-bottom: 0px;
+}
+
+footer {
+  display: none;
+  position: fixed;
+  left: 0;
+  bottom: 0px;
+  right: 0;
+  width: 100%;
+  height: 500px;
+  background: #0C54D9;
+}
+
+
 
 .toronto-bg {
   background-image: linear-gradient(to bottom right, rgba(12, 84, 217, 0.9), rgba(12, 84, 217, 0.9)),url("http://www.moneysense.ca/wp-content/uploads/2016/03/Toronto-Naeem-Jaffer-Getty-Images.jpg");
@@ -35,6 +54,7 @@ label {
   height: 100%;
   left:0;
   top:0;
+  z-index: 100;
   //-webkit-filter: grayscale(100%);
   //-moz-filter: grayscale(100%);
   //-o-filter: grayscale(100%);
@@ -98,6 +118,7 @@ label {
   padding: 30px 0;
   .step-title {
     margin-bottom: 10px;
+    text-align: center;
     h2 {
       display: inline-block;
       margin-top: 0;
