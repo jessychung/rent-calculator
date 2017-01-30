@@ -67,7 +67,7 @@ const rentData = [
 
 const taxRate = [
     {
-        province: 'Alberta',
+        province: 'al',
         bracket: {
             low: 10,
             med: 12,
@@ -75,7 +75,7 @@ const taxRate = [
         }
     },
     {
-        province: 'Ontario',
+        province: 'on',
         bracket: {
             low: 5.05,
             med: 9.15,
@@ -85,6 +85,8 @@ const taxRate = [
 ];
 
 var province;
+var income;
+var tax;
 
 
 function getProvince(selectedProvince) {
@@ -104,7 +106,39 @@ function showResult() {
 
     const nopro = selectedCity.options[selectedCity.selectedIndex].value;
 
-    const income = document.getElementById('inputIncome').value;
+    income = parseFloat(document.getElementById('inputIncome').value);
+
+    //get low med or high
+
+    if(income < 45282){
+
+    }
+
+    for(item in taxRate) {
+        var getProvince = taxRate[item].province;
+        if(province === getProvince) {
+
+            tax = taxRate[item].bracket.low;
+
+            var fedTax;
+            if(income < 45282){
+                fedTax = income * (15/100);
+                console.log(fedTax)
+            } else if(income > 45282 && income < 90563) {
+                fedTax = income * (20.5/100);
+                console.log(fedTax)
+            } else {
+
+            }
+
+        }
+    }
+
+    var takeoff = income * tax/100;
+    var aftertax = income - takeoff;
+
+    console.log(aftertax);
+
 
     if( nopro == 0 ) {
         console.log('no province');
