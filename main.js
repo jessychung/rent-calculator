@@ -65,21 +65,56 @@ const rentData = [
     }
 ];
 
+const taxRate = [
+    {
+        province: 'Alberta',
+        bracket: {
+            low: 10,
+            med: 12,
+            high: 13
+        }
+    },
+    {
+        province: 'Ontario',
+        bracket: {
+            low: 5.05,
+            med: 9.15,
+            high: 11.16
+        }
+    }
+];
 
-function getValue(value) {
-    console.log(value);
+var province;
+
+
+function getProvince(selectedProvince) {
+    province = selectedProvince.value;
 }
 
-function addAnother() {
-    document.getElementById('wrapper').innerHTML += '<span>Label: <input type="text"><small>(ft)</small></span>\r\n';
-}
 
-
-
-function showDiv() {
+function showResult() {
     const div = document.getElementById('results');
     const top = document.getElementById('top-div');
 
     top.style.marginBottom = "500px";
     div.style.display = "block";
+
+    const selectedCity = document.getElementById("province");
+    const selectedCityText = selectedCity.options[selectedCity.selectedIndex].text;
+
+    const nopro = selectedCity.options[selectedCity.selectedIndex].value;
+
+    const income = document.getElementById('inputIncome').value;
+
+    if( nopro == 0 ) {
+        console.log('no province');
+    }
+
+    var resultCity = document.getElementById('bestCity');
+
+    resultCity.innerHTML = selectedCityText;
+
+    // document.querySelector('input[name="rate"]:checked').value;
+
 }
+

@@ -20,7 +20,7 @@
                 <div class="main-title">
                     <img src="images/rent-icon.png">
                     <h1>Where can you afford to rent in <span>Canada</span>?</h1>
-                    <p>Looking to rent in one of Canada's best cities? A simple rule of thumb is you shouldn’t spend more than 1/3 of your after tax salary on rent.. Use this calculator to see which cities you can afford.</p>
+                    <p>Looking to rent in one of Canada's best cities? A simple rule of thumb is you shouldn’t spend more than 1/3 of your salary on rent. Use this calculator to see which cities you can afford.</p>
                     <button class="start-btn">Start  <i class="fa fa-angle-right" aria-hidden="true"></i></button>
                 </div>
             </div>
@@ -30,57 +30,51 @@
 
 
 <div class="top" id="top-div">
-
-    <div class="main container" id="stepOne">
-        <div class="row">
-            <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12">
-                        <div class="step-title">
-                            <div class="step-circle">1</div>
-                            <h2>What's your income?</h2>
+    <form>
+        <div class="main container" id="stepOne">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="step-title">
+                                <div class="step-circle">1</div>
+                                <h2>Which province do you want to live in?</h2>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12 col-md-12">
-                        <div class="box">
-                            <form novalidate>
-                                <div class="form-group">
-                                    <input class="form-control" type="number" name="income" id="inputIncome" placeholder="e.g. 50,000" onkeyup="getValue(value)" required/>
-                                </div>
-                                <div id="test"></div>
-                                <a href="#">Add another income</a>
-                                <button type="submit" class="btn btn-primary" onclick="showDiv();">Submit</button>
-                            </form>
+                    <div class="row">
+                        <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2  col-xs-10 col-xs-offset-1">
+                            <select id="province"  onchange="getProvince(this)" required>
+                                <option value="0">Select a province:</option>
+                                <option value="on">Ontario</option>
+                                <option value="bc">British Columbia</option>
+                                <option value="al">Alberta</option>
+                                <option value="sa">Saskatchewan</option>
+                                <option value="qe">Quebec</option>
+                            </select>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="main container" id="stepTwo" >
-        <div class="row">
-            <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12">
+        <div class="main container-fluid" id="stepTwo">
+            <div class="container">
                 <div class="row">
-                    <div class="col-lg-12 col-md-12">
-                        <div class="step-title">
-                            <div class="step-circle">2</div>
-                            <h2>What's your expenses?</h2>
+                    <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="step-title">
+                                    <div class="step-circle">2</div>
+                                    <h2>How much do you make per year?</h2>
+                                    <p>Enter your annual total income before taxes.</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-12 col-md-12">
-                        <div class="box">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <form>
-                                        <div class="form-group">
-                                            <input class="form-control" type="number" name="income" id="inputIncome" placeholder="e.g. 50,000" onkeyup="getValue(value)" required/>
-                                        </div>
-                                        <a href="#">Add another income</a>
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                    </form>
+                        <div class="row">
+                            <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2  col-xs-10 col-xs-offset-1">
+                                <div class="form-group">
+                                    <input class="line-input" type="number" name="income" id="inputIncome" placeholder="e.g. 50,000" onfocus="this.placeholder = ''" onblur="this.placeholder = 'e.g. 50,000'" onkeyup="getValue(value)" required/>
                                 </div>
                             </div>
                         </div>
@@ -88,7 +82,51 @@
                 </div>
             </div>
         </div>
-    </div>
+
+        <div class="main container" id="stepThree">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-10 col-offset-sm-1">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="step-title">
+                                <div class="step-circle">3</div>
+                                <h2>How many bedrooms are you looking to rent?</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+                            <ul>
+                                <li>
+                                    <label for="a">
+                                        <input id="a"
+                                               type="radio" value="bachelor"
+                                               name="btype">
+                                        Bachelor</label>
+                                </li>
+                                <li><label for="b">
+                                    <input id="b"
+                                           type="radio" value="1bed" name="btype">
+                                    One bedroom</label></li>
+                                <li><label for="c">
+                                    <input id="c"
+                                           name="btype" type="radio" value="2bed">
+                                    Two bedrooms</label></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main container" style="padding-top: 0">
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1" style="text-align: center">
+                    <button class="btn btn-default" type="button" onclick="showResult()">Where can I rent?</button>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
 
 
@@ -105,7 +143,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Congrats! You can rent anywhere in Canada!</h1>
+                <h1>Your ideal affordable city is <span id="bestCity"></span>.</h1>
             </div>
         </div>
     </div>
