@@ -118,8 +118,8 @@ function showResult() {
         var getProvince = taxRate[item].province;
         if(province === getProvince) {
 
-            tax = taxRate[item].bracket.low;
 
+            //calc fed tax
             var fedTax;
             if(income < 45282){
                 fedTax = income * (15/100);
@@ -131,6 +131,8 @@ function showResult() {
 
             }
 
+            //calc provincial tax
+            tax = taxRate[item].bracket.low;
         }
     }
 
