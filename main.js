@@ -5,6 +5,11 @@ const rentData = [
         avgRent: 1468
     },
     {
+        city: 'Surrey',
+        province: 'bc',
+        avgRent: 1785
+    },
+    {
         city: 'Vancouver',
         province: 'bc',
         avgRent: 1959
@@ -79,6 +84,26 @@ const taxRate = [
                 from: 83076,
                 to: 150000,
                 rate: 11.16
+            }
+        }
+    },
+    {
+        province: 'bc',
+        bracket: {
+            low: {
+                from: 0,
+                to: 38210,
+                rate: 5.06
+            },
+            med: {
+                from: 38211,
+                to: 76421,
+                rate: 7.7
+            },
+            high: {
+                from: 76422,
+                to: 87741,
+                rate: 10.5
             }
         }
     }
