@@ -121,9 +121,12 @@ footer {
     .main select:hover, .main select:active, .main select:focus {
       outline: 0; }
   .main ul {
-    list-style-type: none !important; }
+    list-style-type: none !important;
+    padding-left: 0; }
     .main ul li {
-      display: inline-block; }
+      display: inline-block;
+      padding: 0 10px;
+      font-size: 20px; }
 
 .box {
   background-color: #fff;

@@ -1,6 +1,7 @@
 const rentData = [
     {
         city: 'Toronto',
+        province: 'on',
         rent: {
             bachelor: '$1,120',
             oneBed: '$1,468',
@@ -9,6 +10,7 @@ const rentData = [
     },
     {
         city: 'Vancouver',
+        province: 'bc',
         rent: {
             bachelor: '$1,669',
             oneBed: '$1,959',
@@ -17,6 +19,7 @@ const rentData = [
     },
     {
         city: 'Ottawa',
+        province: 'on',
         rent: {
             bachelor: '$969',
             oneBed: '$1,163',
@@ -25,6 +28,7 @@ const rentData = [
     },
     {
         city: 'Edmonton',
+        province: 'al',
         rent: {
             bachelor: '$859',
             oneBed: '$946',
@@ -33,6 +37,7 @@ const rentData = [
     },
     {
         city: 'Regina',
+        province: 'sa',
         rent: {
             bachelor: '$805',
             oneBed: '$990',
@@ -41,6 +46,7 @@ const rentData = [
     },
     {
         city: 'Calgary',
+        province: 'al',
         rent: {
             bachelor: '$1,047',
             oneBed: '$1,031',
@@ -49,6 +55,7 @@ const rentData = [
     },
     {
         city: 'Montreal',
+        province: 'qe',
         rent: {
             bachelor: '$855',
             oneBed: '$1,001',
@@ -57,6 +64,7 @@ const rentData = [
     },
     {
         city: 'Winnipeg',
+        province: 'mb',
         rent: {
             bachelor: '$701',
             oneBed: '$897',
@@ -114,6 +122,9 @@ var incomeP;
 var aftertaxIncome;
 var rentMoney;
 
+const selectedCity = document.getElementById("province");
+const selectedCityText = selectedCity.options[selectedCity.selectedIndex].text;
+
 function getProvince(selectedProvince) {
     province = selectedProvince.value;
 }
@@ -125,112 +136,115 @@ function limitChar(numbers) {
     }
 }
 
-function showResult() {
-    const div = document.getElementById('results');
-    const top = document.getElementById('top-div');
-
-    top.style.marginBottom = "500px";
-    div.style.display = "block";
-
-    const selectedCity = document.getElementById("province");
-    const selectedCityText = selectedCity.options[selectedCity.selectedIndex].text;
+function validateForm() {
 
     const nopro = selectedCity.options[selectedCity.selectedIndex].value;
+    const noincome = document.getElementById('inputIncome').value;
 
-    incomeF = parseFloat(document.getElementById('inputIncome').value);
-    incomeP = parseFloat(document.getElementById('inputIncome').value);
+    if(nopro == 0 || !noincome) {
+        $('#myModal').modal('show');
+    } else {
+        const div = document.getElementById('results');
+        const top = document.getElementById('top-div');
 
-    for(item in taxRate) {
+        top.style.marginBottom = "500px";
+        div.style.display = "block";
 
-        var getProvince = taxRate[item].province;
 
-        if(province === getProvince) {
+        incomeF = parseFloat(document.getElementById('inputIncome').value);
+        incomeP = parseFloat(document.getElementById('inputIncome').value);
 
-            var lowTo = taxRate[item].bracket.low.to;
-            var medFrom = taxRate[item].bracket.med.from;
-            var medTo = taxRate[item].bracket.med.to;
-            var highFrom = taxRate[item].bracket.high.from;
-            var highTo = taxRate[item].bracket.high.to;
+        for(item in taxRate) {
 
-            var lowRate = taxRate[item].bracket.low.rate;
-            var medRate = taxRate[item].bracket.med.rate;
-            var highRate = taxRate[item].bracket.high.rate;
+            var getProvince = taxRate[item].province;
 
-            var fedTax;
-            var provincialTax;
+            if(province === getProvince) {
 
-            //calc fed tax
-            if(incomeF < 45282 ){
+                var lowTo = taxRate[item].bracket.low.to;
+                var medFrom = taxRate[item].bracket.med.from;
+                var medTo = taxRate[item].bracket.med.to;
+                var highFrom = taxRate[item].bracket.high.from;
+                var highTo = taxRate[item].bracket.high.to;
 
-                fedTax = (15/100) * incomeF;
-                console.log('low:' + fedTax)
+                var lowRate = taxRate[item].bracket.low.rate;
+                var medRate = taxRate[item].bracket.med.rate;
+                var highRate = taxRate[item].bracket.high.rate;
 
-            } else if(incomeF > 45282 && incomeF < 90563) {
+                var fedTax;
+                var provincialTax;
 
-                var lowF = incomeF - 45282;
-                var medF = lowF * (20.5/100);
+                //calc fed tax
+                if(incomeF < 45282 ){
 
-                fedTax = (45282 * (15/100)) + medF;
-                console.log('med:' + fedTax)
+                    fedTax = (15/100) * incomeF;
+                    console.log('low:' + fedTax)
 
-            } else if(incomeF > 90536 && incomeF < 140388) {
+                } else if(incomeF > 45282 && incomeF < 90563) {
 
-                var medLeftover = incomeF - 90536;
-                var highLeftover = medLeftover * (26/100);
+                    var lowF = incomeF - 45282;
+                    var medF = lowF * (20.5/100);
 
-                fedTax = (45282 * (15/100)) + (45254 * (20.5/100)) + highLeftover;
-                console.log('high:' + fedTax);
+                    fedTax = (45282 * (15/100)) + medF;
+                    console.log('med:' + fedTax)
 
-            } else {
-                console.log('Woah! Why are you bothered to use this calculator?')
+                } else if(incomeF > 90536 && incomeF < 140388) {
+
+                    var medLeftover = incomeF - 90536;
+                    var highLeftover = medLeftover * (26/100);
+
+                    fedTax = (45282 * (15/100)) + (45254 * (20.5/100)) + highLeftover;
+                    console.log('high:' + fedTax);
+
+                } else {
+                    console.log('Woah! Why are you bothered to use this calculator?')
+                }
+
+                //calc provincial tax
+                if(incomeP < lowTo ){
+
+                    provincialTax = incomeP * (lowRate / 100);
+                    console.log('low:' + provincialTax);
+
+                } else if (incomeP > medFrom && incomeP < medTo) {
+
+                    var lowLeftover = incomeP - medFrom;
+                    var medLeftover = lowLeftover * (medRate/100);
+                    provincialTax = (lowTo * (lowRate/100)) + medLeftover;
+
+                    console.log('med:' + provincialTax);
+
+                } else if (incomeP > highFrom && incomeP < highTo) {
+
+                    var medLeftover = incomeP - highFrom;
+                    var highLeftover = medLeftover * (highRate/100);
+                    provincialTax = (lowTo * (lowRate/100)) + ((medTo - medFrom) * (medRate/100)) + highLeftover;
+                    console.log('high:' + provincialTax);
+                } else {
+                    console.log('Woah! Why are you bothered to use this calculator?')
+                }
+
+
+                aftertaxIncome = Math.round(incomeF - (provincialTax + fedTax));
+                console.log('you after tax income:' + aftertaxIncome);
+
+                rentMoney = (aftertaxIncome / 12) * 0.33;
+
+                console.log('you should spend: $' + Math.round(rentMoney) + ' per month on rent');
+
+
             }
-
-            //calc provincial tax
-            if(incomeP < lowTo ){
-
-                provincialTax = incomeP * (lowRate / 100);
-                console.log('low:' + provincialTax);
-
-            } else if (incomeP > medFrom && incomeP < medTo) {
-
-                var lowLeftover = incomeP - medFrom;
-                var medLeftover = lowLeftover * (medRate/100);
-                provincialTax = (lowTo * (lowRate/100)) + medLeftover;
-
-                console.log('med:' + provincialTax);
-
-            } else if (incomeP > highFrom && incomeP < highTo) {
-
-                var medLeftover = incomeP - highFrom;
-                var highLeftover = medLeftover * (highRate/100);
-                provincialTax = (lowTo * (lowRate/100)) + ((medTo - medFrom) * (medRate/100)) + highLeftover;
-                console.log('high:' + provincialTax);
-            } else {
-                console.log('Woah! Why are you bothered to use this calculator?')
-            }
-
-
-            aftertaxIncome = Math.round(incomeF - (provincialTax + fedTax));
-            console.log('you after tax income:' + aftertaxIncome);
-
-            rentMoney = (aftertaxIncome / 12) * 0.33;
-
-            console.log('you should spend: $' + Math.round(rentMoney) + ' per month on rent');
-
-
         }
+
+
+        if( nopro == 0 ) {
+            console.log('no province');
+        }
+
+        var resultCity = document.getElementById('bestCity');
+
+        resultCity.innerHTML = selectedCityText;
+
+        // document.querySelector('input[name="rate"]:checked').value;
     }
-
-
-    if( nopro == 0 ) {
-        console.log('no province');
-    }
-
-    var resultCity = document.getElementById('bestCity');
-
-    resultCity.innerHTML = selectedCityText;
-
-    // document.querySelector('input[name="rate"]:checked').value;
-
 }
 
