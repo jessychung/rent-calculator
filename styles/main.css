@@ -153,9 +153,18 @@ footer {
   background-color: #f2f2f2; }
 
 #results {
-  padding: 50px 0;
+  padding: 100px 0;
   color: #fff;
   text-align: center; }
   #results h1 {
     font-family: 'merriweather', sans-serif;
     font-size: 27px; }
+  #results #bestCity {
+    display: inline-block; }
+    #results #bestCity:after {
+      content: '';
+      width: auto;
+      height: 6px;
+      background-color: #0181ff;
+      display: block;
+      margin-top: 4px; }
