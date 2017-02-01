@@ -34,6 +34,8 @@ html, body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height:100%;
+  overflow-x: hidden;
+  overflow: initial;
 }
 
 label {
@@ -133,6 +135,7 @@ footer {
 
 .main {
   padding: 150px 0;
+  overflow: hidden;
   .step-title {
     margin-bottom: 30px;
     text-align: center;
