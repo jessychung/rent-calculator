@@ -98,6 +98,7 @@ var finalCity;
 var cityavgRent;
 var cityRent;
 
+
 var $con = $('html, body');
 $('.start-btn').click(function() {
     $con.animate({
@@ -266,8 +267,8 @@ function validateForm() {
 
 $('#showR').click(function() {
     $con.animate({
-        scrollTop: $( '#results' ).offset().top
-    }, 500);
+        scrollTop: $(document).height()
+    }, "slow");
     return false;
 });
 
