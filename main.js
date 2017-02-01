@@ -94,21 +94,29 @@ var resultCity;
 var RentMonies;
 var selectedCity;
 var selectedCityText;
-var largest = 0;
+var finalCity;
+var cityavgRent;
+var cityRent;
+
+var $con = $('html, body');
+$('.start-btn').click(function() {
+    $con.animate({
+        scrollTop: $( '#stepOne' ).offset().top
+    }, 500);
+    return false;
+});
 
 
 function getProvince(selectedProvince) {
     province = selectedProvince.value;
 }
 
-function limitChar(numbers) {
-
-    if(numbers.value.length >= 6) {
-        numbers.value = numbers.value.substr(0, 6);
-    }
-}
-
 function validateForm() {
+    var largest = 0;
+
+    var noCity = false;
+    var tooRich = false;
+
     selectedCity = document.getElementById("province");
     selectedCityText = selectedCity.options[selectedCity.selectedIndex].value;
 
@@ -167,7 +175,7 @@ function validateForm() {
 
                     fedTax = (45282 * (15/100)) + (45254 * (20.5/100)) + highLeftover;
                 } else {
-                    console.log('Woah! Why are you bothered to use this calculator?')
+                    tooRich = true;
                 }
 
                 //calc provincial tax
@@ -187,7 +195,7 @@ function validateForm() {
                     var highLeftover = medLeftover * (highRate/100);
                     provincialTax = (lowTo * (lowRate/100)) + ((medTo - medFrom) * (medRate/100)) + highLeftover;
                 } else {
-                    console.log('Woah! Why are you bothered to use this calculator?')
+                    tooRich = true;
                 }
 
 
@@ -205,30 +213,62 @@ function validateForm() {
             if(province === getProvince) {
 
                 if(rentMoney > rentData[item].avgRent) {
+
                     var count = rentMoney - rentData[item].avgRent;
-                    if(largest < count) {
-                        console.log(rentData[item].city)
+
+                    if(largest == 0) {
+                        largest = count;
                     }
+
+                    if(largest >= count) {
+                        largest = count;
+                        finalCity = rentData[item].city;
+                        noCity = false;
+                        tooRich = false;
+                        cityRent = rentData[item].avgRent;
+                    }
+
                 } else {
-                    console.log('not good')
+                    if(!tooRich) {
+                        noCity = true;
+                    }
                 }
 
             }
 
         }
+        
+
 
 
         BestCityinfo = document.getElementById('bestCityinfo');
-        BestCityinfo.innerHTML = selectedCityText;
+        cityavgRent = document.getElementById('cityRent');
 
-        resultCity = document.getElementById('bestCity');
-        resultCity.innerHTML = selectedCityText;
+        resultCity = document.getElementById('showResults');
+        if(noCity){
+            resultCity.innerHTML = 'Oh boy... you can\'t afford to rent anywhere.';
+            $('#notRich').hide();
+        } else if(tooRich) {
+            resultCity.innerHTML = 'Woah, you are loaded. You can rent anywhere you like.';
+            $('#notRich').hide();
+        } else {
+            resultCity.innerHTML = 'You can afford to rent in <span id="bestCity">' + finalCity + '</span>.';
+            BestCityinfo.innerHTML = finalCity;
+            cityavgRent.innerHTML = '$' + cityRent;
+            $('#notRich').show();
+        }
 
         RentMonies = document.getElementById('rentMonies');
         RentMonies.innerHTML = '$' + Math.round(rentMoney);
 
-        console.log(selectedCityText);
     }
 }
+
+$('#showR').click(function() {
+    $con.animate({
+        scrollTop: $( '#results' ).offset().top
+    }, 500);
+    return false;
+});
 
 

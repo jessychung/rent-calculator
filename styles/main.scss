@@ -129,6 +129,10 @@ footer {
       font-weight: 300;
       padding: 12px 34px;
       margin-top: 40px;
+      @include hover-state {
+        background-color: rgba(255, 255, 255, 0.1);
+        transition: all .3s;
+      }
     }
   }
 }
@@ -201,13 +205,27 @@ footer {
   font-size: 25px;
   padding: 15px;
   font-weight: 300;
+  padding-left: 45px;
   @include hover-state {
     outline: 0;
   }
 }
 
+.after {
+  &:after {
+    content: '$';
+    position: absolute;
+    left: 28px;
+    color: $blue;
+    top: 11px;
+    font-size: 28px;
+    font-weight: $medium;
+  }
+}
+
 #stepTwo {
   background-color: #f2f2f2;
+  padding-bottom: 90px;
 }
 
 #results {
@@ -215,6 +233,7 @@ footer {
   color: #fff;
   text-align: center;
   h1 {
+    margin-top: 0;
     font-family: 'merriweather', sans-serif;
     font-size: 27px;
   }
@@ -229,4 +248,47 @@ footer {
       margin-top: 4px;
     }
   }
+  .moneyCircle {
+    border-radius: 1000px;
+    border: 2px solid #fff;
+    width: 130px;
+    height: 130px;
+    line-height: 130px;
+    text-align: center;
+    font-weight: $light;
+    margin: 30px auto;
+  }
+  p {
+    max-width: 325px;
+    text-align: center;
+    font-weight: 200;
+    font-size: 17px;
+    margin: 0 auto;
+  }
+  .container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+#showR {
+  background-color: $blue;
+  color: #fff;
+  font-size: 19px;
+  font-weight: 300;
+  padding: 12px 34px;
+  border: 0;
+  font-family: 'merriweather', sans-serif;
+}
+
+.modal-header, .modal-footer {
+  border: 0px !important;
+}
+
+.modal-content {
+  border-radius: 0px !important;
+  box-shadow: none !important;
+  border:0px !important;
 }
