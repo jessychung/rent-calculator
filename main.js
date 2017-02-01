@@ -94,6 +94,7 @@ var resultCity;
 var RentMonies;
 var selectedCity;
 var selectedCityText;
+var largest = 0;
 
 
 function getProvince(selectedProvince) {
@@ -196,14 +197,20 @@ function validateForm() {
             }
         }
 
+
         for(item in rentData) {
 
             var getProvince = rentData[item].province;
 
             if(province === getProvince) {
 
+                console.log(rentData[item].avgRent);
+
                 if(rentMoney > rentData[item].avgRent) {
-                    console.log('good')
+                    var count = rentMoney - rentData[item].avgRent;
+                    if(largest < count) {
+                        console.log('jjjjjj')
+                    }
                 } else {
                     console.log('not good')
                 }
