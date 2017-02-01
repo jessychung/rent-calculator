@@ -120,6 +120,10 @@ footer {
     font-weight: 300; }
     .main select:hover, .main select:active, .main select:focus {
       outline: 0; }
+  .main ul {
+    list-style-type: none !important; }
+    .main ul li {
+      display: inline-block; }
 
 .box {
   background-color: #fff;
