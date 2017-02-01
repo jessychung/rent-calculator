@@ -204,12 +204,10 @@ function validateForm() {
 
             if(province === getProvince) {
 
-                console.log(rentData[item].avgRent);
-
                 if(rentMoney > rentData[item].avgRent) {
                     var count = rentMoney - rentData[item].avgRent;
                     if(largest < count) {
-                        console.log('jjjjjj')
+                        console.log(rentData[item].city)
                     }
                 } else {
                     console.log('not good')
